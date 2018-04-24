@@ -1,0 +1,6 @@
+results/
+*.o
+calculator
+useFraction
+FractionTests
+hw1.tar
