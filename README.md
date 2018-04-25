@@ -202,7 +202,39 @@ At completion of each milestone
 
 ### Results
 
-        --TBD--
+* Added helper functions
+
+        isZero(), isPositive(), isNegative(), isWholeNumber()
+
+        also added test cases for each
+
+* Updated implementation of operator<<
+
+        output varies on three conditions
+                zero
+                whole number
+                fraction
+        
+        original plan included mixed numbers
+                but this isn't a requirement
+
+* Updated check-samples.sh script that implements acceptance tests
+
+        simpify usage of diff
+                use option to compare two directories
+                eliminate for loop
+
+        add summary output before detailed comparisons
+
+* Test results
+
+        all unit test pass
+        
+        all acceptance tests still fail
+                this because of reliance on operator>>
+        
+        useFraction still works
+                output reliant on operator>> is incorrect
 
 ## M3 - operator =
 ### Goals
