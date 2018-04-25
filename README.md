@@ -245,7 +245,28 @@ At completion of each milestone
 
 ### Results
 
-        --TBD--
+* implemented operator =
+
+        makes call to setState()
+
+* also added copy constructor with equivalent behavior
+
+* refactored quotient and remainder properties into member functions
+        
+        this simplifies setState
+
+* added FractionTests to make all target
+
+* Test results
+
+        all unit test pass
+        
+        all acceptance tests still fail
+                this because of reliance on operator>>
+        
+        useFraction still works
+                output reliant on operator>> is incorrect
+
 
 ## M4 - operator ++
 ### Goals

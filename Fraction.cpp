@@ -1,5 +1,6 @@
 #include"Fraction.h"
 
+#include<iostream>
 #include<stdexcept>
 #include<string>
 
@@ -14,6 +15,12 @@ Fraction::Fraction()
 Fraction::Fraction(int num, int den)
 {
 	setState(num, den);
+}
+
+
+Fraction::Fraction(const Fraction& f)
+{
+	setState(f.getNum(), f.getDen());
 }
 
 istream& operator>> (istream& is, Fraction& f)
@@ -44,7 +51,7 @@ ostream& operator << (ostream& os, const Fraction& f)
 	// whole number
 	if ( f.isWholeNumber() )
 	{
-		os << abs(f._quotient);
+		os << abs(f.getQuotient());
 	}
 	// fraction
 	else
@@ -56,17 +63,18 @@ ostream& operator << (ostream& os, const Fraction& f)
 
 Fraction& Fraction::operator=(const Fraction& rhs)
 {	
-	// minimal implementation for M0 milestone
+	// updated for M3
+	setState(rhs.getNum(), rhs.getDen());
 	return (*this);
 }
 
-Fraction Fraction::operator+(const Fraction& f)
+Fraction& Fraction::operator+(const Fraction& f)
 {
 	// minimal implementation for M0 milestone
 	return (*this);
 }
 
-Fraction Fraction::operator-(const Fraction& f)
+Fraction& Fraction::operator-(const Fraction& f)
 	
 {
 	// minimal implementation for M0 milestone
@@ -94,9 +102,16 @@ void Fraction::setState(int num, int den)
 
 	_num = num;
 	_den = den;
+}
 
-	_quotient  = _num / _den;
-	_remainder = _num % _den;
+int Fraction::getQuotient() const
+{
+	return _num / _den;
+}
+
+int Fraction::getRemainder() const
+{
+	return _num % _den;
 }
 
 bool Fraction::isZero() const
@@ -118,5 +133,5 @@ bool Fraction::isNegative() const
 
 bool Fraction::isWholeNumber() const
 {
-	return isZero() || _remainder == 0;
+	return isZero() || getRemainder() == 0;
 }

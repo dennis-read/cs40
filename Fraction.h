@@ -8,9 +8,10 @@ using namespace std;
 class Fraction
 {        
 	public:
-		//Constructor
+		//Constructors
 		explicit Fraction();
 		explicit Fraction(int num, int den);
+		Fraction(const Fraction&);
 
         
         // Operators
@@ -18,14 +19,17 @@ class Fraction
 		friend ostream& operator <<(ostream&, const Fraction&);
 
 		Fraction& operator =(const Fraction&);
-		Fraction  operator +(const Fraction&); 
-		Fraction  operator -(const Fraction&);
+		Fraction& operator +(const Fraction&); 
+		Fraction& operator -(const Fraction&);
         
         // Accessors
 		int getNum() 	const;
 		int getDen()	const;
 
 		// Helpers
+		int getQuotient() 		const;
+		int getRemainder()		const;
+
 		bool isZero() 			const;
 		bool isPositive() 		const;
 		bool isNegative() 		const;
@@ -34,9 +38,6 @@ class Fraction
 	private: 
 		int _num;
 		int _den;
-
-		int _quotient;
-		int _remainder;
 
 		void setState(int num, int den);
 }; 

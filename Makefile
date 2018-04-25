@@ -1,7 +1,7 @@
 
 
 CXXFLAGS=-Wall -g
-all: calculator useFraction
+all: calculator useFraction FractionTests
 calculator: calculator.o Fraction.o
 	$(CXX) -o $@ $^
 

@@ -21,6 +21,12 @@ TEST_CASE( "Fraction", "[]" ) {
         CHECK( f.getDen() == 2222 );
     }
 
+    SECTION( "constructor, copy" ) {
+            Fraction f = Fraction(1,2);
+            CHECK( f.getNum() == 1 );
+            CHECK( f.getDen() == 2 );                      
+        }    
+
     SECTION( "constructor, zero denominator" ) {
         CHECK_THROWS_AS( Fraction(1111,0), invalid_argument);
         CHECK_THROWS_WITH( Fraction(1111,0), "zero denominator");
@@ -36,6 +42,20 @@ TEST_CASE( "Fraction", "[]" ) {
         CHECK( f.getDen() == 9999 );
     }
  
+    SECTION( "getQuotient()" ) {
+        CHECK( Fraction(0,1).getQuotient() == 0 );
+        CHECK( Fraction(1,2).getQuotient() == 0 );        
+        CHECK( Fraction(2,2).getQuotient() == 1 );
+        CHECK( Fraction(4,2).getQuotient() == 2 );            
+    }
+    
+    SECTION( "getRemainder()" ) {
+        CHECK( Fraction(0,1).getRemainder() == 0 );
+        CHECK( Fraction(1,2).getRemainder() == 1 );        
+        CHECK( Fraction(2,2).getRemainder() == 0 );
+        CHECK( Fraction(4,2).getRemainder() == 0 );            
+    }
+
     SECTION( "isZero()" ) {
         CHECK( Fraction(0,1).isZero() == true );
         CHECK( Fraction(1,1).isZero() == false );          
@@ -92,5 +112,11 @@ TEST_CASE( "Fraction", "[]" ) {
         CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction( 0,-6))).str() == "0" );
         CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction(-0,-6))).str() == "0" );        
     }
-                    
+
+    SECTION( "operator =" ) {
+            Fraction f;
+            f = Fraction(1,2);
+            CHECK( f.getNum() == 1 );
+            CHECK( f.getDen() == 2 );                      
+        }                    
 }
