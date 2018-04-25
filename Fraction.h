@@ -22,12 +22,21 @@ class Fraction
 		Fraction  operator -(const Fraction&);
         
         // Accessors
-		int getNum() const;
-		int getDen( )const;
+		int getNum() 	const;
+		int getDen()	const;
+
+		// Helpers
+		bool isZero() 			const;
+		bool isPositive() 		const;
+		bool isNegative() 		const;
+		bool isWholeNumber()	const;
 
 	private: 
 		int _num;
 		int _den;
+
+		int _quotient;
+		int _remainder;
 
 		void setState(int num, int den);
 }; 

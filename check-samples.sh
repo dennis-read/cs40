@@ -7,12 +7,11 @@ for fn in samples/*.in; do
     echo "results/$(basename "$fn" .in).out"
     ./calculator <"$fn" >"results/$(basename "$fn" .in).out"
 done
-echo ""
 
-echo "comparing results to sample outputs"
-for fn in samples/*.out; do
-    echo "$fn"
-    echo "results/$(basename "$fn")"
-    diff "$fn" "results/$(basename "$fn")"
-    echo ""
-done
+echo ""
+echo "diff summary"
+diff -q -x *.in samples results
+
+echo ""
+echo "diff details"
+diff -x *.in samples results
