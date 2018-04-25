@@ -21,6 +21,11 @@ TEST_CASE( "Fraction", "[]" ) {
         REQUIRE( f.getDen() == 2222 );
     }
 
+    SECTION( "constructor, zero denominator" ) {
+        CHECK_THROWS_AS( Fraction(1111,0), invalid_argument);
+        CHECK_THROWS_WITH( Fraction(1111,0), "zero denominator");
+    }
+
     SECTION( "operator >>" ) {
         Fraction f;
         stringstream input("1/2 + 4/3");

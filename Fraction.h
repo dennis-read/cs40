@@ -28,6 +28,8 @@ class Fraction
 	private: 
 		int _num;
 		int _den;
+
+		void setState(int num, int den);
 }; 
 
 #endif 

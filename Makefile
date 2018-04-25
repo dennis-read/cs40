@@ -22,4 +22,4 @@ test-acceptance: calculator
 	./check-samples.sh 
 
 test-unit: FractionTests
-	FractionTests
+	./FractionTests

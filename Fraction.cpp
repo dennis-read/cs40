@@ -7,15 +7,13 @@ using namespace std;
 
 Fraction::Fraction()
 {
-	// fake values for M0 milestone
-	_num = 9999;
-	_den = 9999;
+	// fake values for M1 milestone
+	setState(9999,9999);
 }
 
 Fraction::Fraction(int num, int den)
 {
-	_num = num;
-	_den = den;
+	setState(num, den);
 }
 
 istream& operator>> (istream& is, Fraction& f)
@@ -69,4 +67,17 @@ int Fraction::getNum() const
 int Fraction::getDen() const
 {
 	return _den;
+}
+
+// central setting for state (numerator and denominator)
+// this will eventually be used to handle simplification
+void Fraction::setState(int num, int den)
+{
+	if (den == 0)
+	{
+		throw invalid_argument("zero denominator");
+	}
+
+	_num = num;
+	_den = den;
 }

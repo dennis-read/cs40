@@ -164,9 +164,22 @@ At completion of each milestone
                 
 
 
-### Results
+* Global setter function created
 
-        --TBD--
+        both constructors use it
+        the default constructor passes 9999/9999
+
+        setter function throws invalid_argument on zero denominator
+
+* Unit test updated with test case for exception
+
+        check exception type (invalid_argument)
+        message (zero denominator)
+
+* Updated makefile target for test-unit
+
+        updated command to ./FractionTests
+        explicit path to pwd is required
 ## M2 - operator << (insertion)
 ### Goals
 * Revise insertion operator
