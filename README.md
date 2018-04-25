@@ -121,7 +121,34 @@ At completion of each milestone
 
 ### Results
 
-        --TBD--
+* Fraction class
+        
+        Created header and implemenation files
+        
+        Minimal implementation, sufficient build and run driver programs 
+                calculator, useFraction
+
+* Testing
+
+        Created FractionTests class based on Catch2 framework
+                simple tests define and validate current behavior
+                all unit tests pass
+        
+        Created script to 
+                run driver program against sample input
+                and compare results to sample output (using diff)
+                all acceptance test fail (as expected)
+        
+
+* Makefile
+        
+        Updated to build FractionTests, and to run unit and acceptance tests
+        
+        Added target to build tar file
+
+* README.md
+        
+        Set up content for goals and milestones
 
 ## M1 - Constructor
 ### Goals
