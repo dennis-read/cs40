@@ -320,7 +320,22 @@ At completion of each milestone
 
 ### Results
 
-        --TBD--
+* implemented operator -
+
+        basically a clone of operator +
+
+        possibly some common code that could be refactored here
+
+* Test results
+
+        all unit test pass
+        
+        all acceptance tests still fail
+                this because of reliance on operator>>
+        
+        useFraction still works
+                output reliant on operator>> is incorrect
+
 
 ## M6 - operator >> (extraction)
 ### Goals

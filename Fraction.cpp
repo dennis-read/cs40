@@ -84,7 +84,18 @@ Fraction& Fraction::operator+(const Fraction& f)
 Fraction& Fraction::operator-(const Fraction& f)
 	
 {
-	// minimal implementation for M0 milestone
+	// updated for M5
+	// if like fractions, just add numerators
+	if (_den == f._den)
+	{
+		_num -= f._num;
+	}
+	// otherwise, use simplest common denonminator
+	else
+	{
+		_num = (_num * f._den) - (f._num * _den);
+		_den = (_den * f._den);
+	}
 	return (*this);
 }
 

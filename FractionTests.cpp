@@ -113,5 +113,23 @@ TEST_CASE( "Fraction", "[]" ) {
             Fraction f4 = Fraction(1,3) + Fraction(1,-3);
             CHECK( f4.getNum() ==  0 );
             CHECK( f4.getDen() ==  3 );            
-    }          
+    }  
+
+    SECTION( "operator -" ) {
+            Fraction f1 = Fraction(2,3) - Fraction(1,3);
+            CHECK( f1.getNum() ==  1 );
+            CHECK( f1.getDen() ==  3 );
+
+            Fraction f2 = Fraction(1,3) - Fraction(2,3);
+            CHECK( f2.getNum() == -1 );
+            CHECK( f2.getDen() ==  3 );
+
+            Fraction f3 = Fraction(1,3) - Fraction(1,4);
+            CHECK( f3.getNum() ==  1 );
+            CHECK( f3.getDen() ==  12 );  
+
+            Fraction f4 = Fraction(1,3) - Fraction(2,4);
+            CHECK( f4.getNum() ==  -2 );
+            CHECK( f4.getDen() ==  12 );            
+    }              
 }
