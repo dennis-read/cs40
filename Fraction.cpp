@@ -42,21 +42,17 @@ istream& operator>> (istream& is, Fraction& f)
 
 ostream& operator << (ostream& os, const Fraction& f)
 {
-	// revised for M2 milestone
-
-	// handle sign separately
-	if ( f.isNegative() ) 
-		os << "-";
+	// revised for M4 milestone
 
 	// whole number
-	if ( f.isWholeNumber() )
+	if ( f.isWholeNumber()  )
 	{
-		os << abs(f.getQuotient());
+		os << (f.getQuotient());
 	}
 	// fraction
 	else
 	{
-		os << abs(f._num) << "/" << abs(f._den);
+		os << f._num << "/" << f._den;
 	}
 	return os;
 }
@@ -70,7 +66,18 @@ Fraction& Fraction::operator=(const Fraction& rhs)
 
 Fraction& Fraction::operator+(const Fraction& f)
 {
-	// minimal implementation for M0 milestone
+	// updated for M4
+	// if like fractions, just add numerators
+	if (_den == f._den)
+	{
+		_num += f._num;
+	}
+	// otherwise, use simplest common denonminator
+	else
+	{
+		_num = (_num * f._den) + (f._num * _den);
+		_den = (_den * f._den);
+	}
 	return (*this);
 }
 
@@ -92,16 +99,25 @@ int Fraction::getDen() const
 }
 
 // central setting for state (numerator and denominator)
-// this will eventually be used to handle simplification
+//     - detect invalid denominator (zero)
+//     - ensure that denominator is unsigned
+//     - reduce to simplest form
 void Fraction::setState(int num, int den)
 {
 	if (den == 0)
 	{
 		throw invalid_argument("zero denominator");
 	}
-
-	_num = num;
-	_den = den;
+	if (den < 0)
+	{
+		_num = num * -1;
+		_den = den * -1;
+	}
+	else
+	{
+		_num = num;
+		_den = den;
+	}
 }
 
 int Fraction::getQuotient() const
@@ -114,24 +130,7 @@ int Fraction::getRemainder() const
 	return _num % _den;
 }
 
-bool Fraction::isZero() const
-{
-	return _num == 0;
-}
-
-bool Fraction::isPositive() const
-{
-	return 	isZero() 
-		|| (_num < 0 && _den < 0)
-		|| (_num > 0 && _den > 0); 
-}
-
-bool Fraction::isNegative() const
-{
-	return ! isPositive();
-}
-
 bool Fraction::isWholeNumber() const
 {
-	return isZero() || getRemainder() == 0;
+	return ( getRemainder() == 0 );
 }

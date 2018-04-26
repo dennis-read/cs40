@@ -268,7 +268,7 @@ At completion of each milestone
                 output reliant on operator>> is incorrect
 
 
-## M4 - operator ++
+## M4 - operator +
 ### Goals
 * Revise addition operator
 
@@ -278,9 +278,39 @@ At completion of each milestone
 
 ### Results
         
-        --TBD--
+* implemented operator +
+        
+        used simplest common denominator for non-like fractions
 
-## M5 - operator--
+        updated setState to hold negation in the numerator
+                constructors can accept negative denominators
+                but they're always stored as positive
+                        numerator sign flipped as needed
+                this greatly simplifies other operations
+
+        retired several helper functions
+                isPositive, isNegative, isZero
+
+* tried to switch _den member variable to unsigned int
+
+        this telegraphs the numerator's role in negation
+        
+        but it causes problems with the % operator:
+                int % uint returns unexpected values
+                so this will be revisited later
+
+
+* Test results
+
+        all unit test pass
+        
+        all acceptance tests still fail
+                this because of reliance on operator>>
+        
+        useFraction still works
+                output reliant on operator>> is incorrect
+
+## M5 - operator-
 ### Goals
 * Revise subtraction operator
 

@@ -30,14 +30,12 @@ class Fraction
 		int getQuotient() 		const;
 		int getRemainder()		const;
 
-		bool isZero() 			const;
-		bool isPositive() 		const;
-		bool isNegative() 		const;
+		//bool isZero() 			const;
 		bool isWholeNumber()	const;
 
 	private: 
-		int _num;
-		int _den;
+		int  _num;
+		int  _den; 
 
 		void setState(int num, int den);
 }; 

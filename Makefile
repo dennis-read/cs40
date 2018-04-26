@@ -21,5 +21,5 @@ package:
 test-acceptance: calculator
 	./check-samples.sh 
 
-test-unit: FractionTests
+test-unit: Fraction.o FractionTests
 	./FractionTests

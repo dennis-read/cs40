@@ -6,7 +6,7 @@
 
 // minimal checks for M0 milestone
 TEST_CASE( "Fraction", "[]" ) {
-   
+
     SECTION( "constructor, default" ) {
         Fraction f;
         // these values currently hard coded for M0
@@ -56,27 +56,6 @@ TEST_CASE( "Fraction", "[]" ) {
         CHECK( Fraction(4,2).getRemainder() == 0 );            
     }
 
-    SECTION( "isZero()" ) {
-        CHECK( Fraction(0,1).isZero() == true );
-        CHECK( Fraction(1,1).isZero() == false );          
-    }
-
-    SECTION( "isPositive" ) {
-        CHECK( Fraction( 0, 1).isPositive() == true  );
-        CHECK( Fraction( 1, 1).isPositive() == true  );      
-        CHECK( Fraction(-1,-1).isPositive() == true  ); 
-        CHECK( Fraction(-1, 1).isPositive() == false ); 
-        CHECK( Fraction( 1,-1).isPositive() == false );                             
-    }  
-
-    SECTION( "isNegative" ) {
-        CHECK( Fraction( 0, 1).isNegative() == false  );
-        CHECK( Fraction( 1, 1).isNegative() == false  );      
-        CHECK( Fraction(-1,-1).isNegative() == false  ); 
-        CHECK( Fraction(-1, 1).isNegative() == true ); 
-        CHECK( Fraction( 1,-1).isNegative() == true );                             
-    }
-
     SECTION( "isWholeNumber" ) {
         CHECK( Fraction( 0,1).isWholeNumber() == true  );
         CHECK( Fraction( 1,1).isWholeNumber() == true  );      
@@ -84,10 +63,10 @@ TEST_CASE( "Fraction", "[]" ) {
         CHECK( Fraction( 2,1).isWholeNumber() == true  );       
         CHECK( Fraction(-2,1).isWholeNumber() == true  );                                 
     } 
-  
+ 
     SECTION( "operator <<" ) {
         stringstream output;
-
+        
         // handle signs
         CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction( 5, 6))).str() == "5/6" );
         CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction(-5, 6))).str() == "-5/6" );
@@ -99,18 +78,16 @@ TEST_CASE( "Fraction", "[]" ) {
         CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction(-6, 6))).str() == "-1" );
         CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction( 6,-6))).str() == "-1" );
         CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction(-6,-6))).str() == "1" );
-        
         CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction( 12, 6))).str() == "2" );
         CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction(-12, 6))).str() == "-2" );
         CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction( 12,-6))).str() == "-2" );
         CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction(-12,-6))).str() == "2" );
 
         // zero
-        // whole number
         CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction( 0, 6))).str() == "0" );
         CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction(-0, 6))).str() == "0" );
         CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction( 0,-6))).str() == "0" );
-        CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction(-0,-6))).str() == "0" );        
+        CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction(-0,-6))).str() == "0" );     
     }
 
     SECTION( "operator =" ) {
@@ -118,5 +95,23 @@ TEST_CASE( "Fraction", "[]" ) {
             f = Fraction(1,2);
             CHECK( f.getNum() == 1 );
             CHECK( f.getDen() == 2 );                      
-        }                    
+    }     
+    
+    SECTION( "operator +" ) {
+            Fraction f1 = Fraction(1,3) + Fraction(1,3);
+            CHECK( f1.getNum() == 2 );
+            CHECK( f1.getDen() == 3 );
+
+            Fraction f2 = Fraction(1,3) + Fraction(1,4);
+            CHECK( f2.getNum() ==  7 );
+            CHECK( f2.getDen() == 12 );
+
+            Fraction f3 = Fraction(1,3) + Fraction(-1,3);
+            CHECK( f3.getNum() ==  0 );
+            CHECK( f3.getDen() ==  3 );  
+
+            Fraction f4 = Fraction(1,3) + Fraction(1,-3);
+            CHECK( f4.getNum() ==  0 );
+            CHECK( f4.getDen() ==  3 );            
+    }          
 }
