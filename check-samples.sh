@@ -1,4 +1,5 @@
 echo "removing prior results"
+mkdir -p results
 rm results/*.out
 echo ""
 
