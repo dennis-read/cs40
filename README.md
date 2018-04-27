@@ -414,13 +414,13 @@ At completion of each milestone
 * Reverted regex used in operator >>
 
         added back capture of optional negation signs
-        need to concatenate the directly to digits
-        atoi operation doesn't like space between sign and digits
+        need to concatenate them directly with digits
+        atoi operation doesn't like space(s) between sign and digits
 
 * Refactored unit tests in FractionTests.cpp
 
         case names group together related conditions
-        output name simulate a BDD description style
+        output name simulates a BDD description style
 
 * Add unit test output to git commit
 
