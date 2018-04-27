@@ -19,8 +19,8 @@ class Fraction
 		friend ostream& operator <<(ostream&, const Fraction&);
 
 		Fraction& operator =(const Fraction&);
-		Fraction& operator +(const Fraction&); 
-		Fraction& operator -(const Fraction&);
+		Fraction& operator +(const Fraction&) const; 
+		Fraction& operator -(const Fraction&) const;
         
         // Accessors
 		int getNum() 	const;

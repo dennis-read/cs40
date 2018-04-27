@@ -34,12 +34,12 @@ TEST_CASE( "Fraction", "[]" ) {
 
     SECTION( "operator >>" ) {
         Fraction f;
-        stringstream input("1/2 + 4/3");
+        stringstream input("1/2 ");
         input >> f;
 
-        // M0 ignores stream input and returns current object
-        CHECK( f.getNum() == 9999 );
-        CHECK( f.getDen() == 9999 );
+        // updated for M6
+        CHECK( f.getNum() == 1 );
+        CHECK( f.getDen() == 2 );
     }
  
     SECTION( "getQuotient()" ) {

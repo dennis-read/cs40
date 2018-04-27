@@ -356,7 +356,34 @@ At completion of each milestone
 
 ### Results
         
-        --TBD--
+* implemented operator >>
+
+        pull one character at a time from input stream
+
+        try to extract numerator and denominator using regex
+
+        upon match
+                return last character to stream
+                call setState with numerator and denominator
+
+* fixed operator+ and operator-
+
+        noticed an issue running useFraction
+        addition and subtraction were modifying *this
+                instead of return new object
+        corrected error and specified both operators as const
+                this would have detected this issue 
+
+* Test results
+
+        all unit test pass
+        
+        all acceptance tests pass except one
+                sample2 is looking for a reduced fraction
+                this will be implemented in next milestone
+        
+        useFraction now works correctly
+                addition operation previously overwrote addend
 
 ## M7 - reduced fractions
 ### Goals

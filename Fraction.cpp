@@ -3,6 +3,7 @@
 #include<iostream>
 #include<stdexcept>
 #include<string>
+#include<regex>
 
 using namespace std;
 
@@ -20,23 +21,34 @@ Fraction::Fraction(int num, int den)
 
 Fraction::Fraction(const Fraction& f)
 {
-	setState(f.getNum(), f.getDen());
+	setState(f._num, f._den);
 }
 
 istream& operator>> (istream& is, Fraction& f)
 {
-	// minimal implementation for M0 milestone
+	// updated for M6
+	string pattern = 
+		R"((\D*\d+\D*))"	// numerator	[capture:1]
+		R"(/)"				// literal
+		R"((\D*\d+))"		// denominator	[capture:2]
+		R"(\D)";			// terminator
+    regex regex(pattern);   // initialize regex with pattern
+    smatch matches;         // hold evaluation results
+    string input;           // built up from input stream, one char at a time
+    bool matched = false;   // detect when regex expr is matched
+    char c;                 // most recent character retrieved from stream
+    
+	// advance through stream,trying to match pattern
+    do	
+	{	is.get(c);
+		input += c;
+        matched = regex_match(input, matches, regex); 
+	}  while (!matched);
+	is.putback(c); // return last read character to stream
 
-	// consume stream up to next operator
-	char c;
-	while (	is.get(c) 
-			&& 	
-			!(is.eof() || c == '\n' || c == '+' || c == '-'));
+	// set state values (num, den)
+	f.setState(stoi(matches[1].str()),stoi(matches[2].str())); 
 	
-	// give operator to driver program
-	is.putback(c); 
-
-	// return fraction
 	return is;
 }
 
@@ -64,39 +76,51 @@ Fraction& Fraction::operator=(const Fraction& rhs)
 	return (*this);
 }
 
-Fraction& Fraction::operator+(const Fraction& f)
+Fraction& Fraction::operator+(const Fraction& f) const
 {
+	int num;
+	int den;
+
 	// updated for M4
 	// if like fractions, just add numerators
 	if (_den == f._den)
 	{
-		_num += f._num;
+		num = _num + f._num;
+		den = _den;
 	}
 	// otherwise, use simplest common denonminator
 	else
 	{
-		_num = (_num * f._den) + (f._num * _den);
-		_den = (_den * f._den);
+		num = (_num * f._den) + (f._num * _den);
+		den = (_den * f._den);
 	}
-	return (*this);
+	
+	Fraction* result = new Fraction(num, den);
+	return *result;
 }
 
-Fraction& Fraction::operator-(const Fraction& f)
+Fraction& Fraction::operator-(const Fraction& f) const
 	
 {
+	int num;
+	int den;
+
 	// updated for M5
 	// if like fractions, just add numerators
 	if (_den == f._den)
 	{
-		_num -= f._num;
+		num = _num - f._num;
+		den = _den;
 	}
 	// otherwise, use simplest common denonminator
 	else
 	{
-		_num = (_num * f._den) - (f._num * _den);
-		_den = (_den * f._den);
+		num = (_num * f._den) - (f._num * _den);
+		den = (_den * f._den);
 	}
-	return (*this);
+
+	Fraction* result = new Fraction(num, den);
+	return *result;
 }
 
 int Fraction::getNum() const
@@ -117,7 +141,7 @@ void Fraction::setState(int num, int den)
 {
 	if (den == 0)
 	{
-		throw invalid_argument("zero denominator");
+		throw invalid_argument("division by zero");
 	}
 	if (den < 0)
 	{
