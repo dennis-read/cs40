@@ -1,6 +1,6 @@
 
 
-CXXFLAGS=-Wall -g
+CXXFLAGS=-Wall -g -std=c++11
 all: calculator useFraction
 calculator: calculator.o Fraction.o
 	$(CXX) -o $@ $^
@@ -22,4 +22,4 @@ test-acceptance: calculator
 	./check-samples.sh 
 
 test-unit: FractionTests
-	FractionTests
+	./FractionTests
