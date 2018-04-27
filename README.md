@@ -404,4 +404,24 @@ At completion of each milestone
 
 ### Results
         
-        --TBD--
+* Enabled reduction to simplest form
+
+        implemented in setState
+                so logic is applied during all state changes
+
+        uses private helper function based on Euclid's algorithm
+
+* Reverted regex used in operator >>
+
+        added back capture of optional negation signs
+        need to concatenate the directly to digits
+        atoi operation doesn't like space between sign and digits
+
+* Refactored unit tests in FractionTests.cpp
+
+        case names group together related conditions
+        output name simulate a BDD description style
+
+* Add unit test output to git commit
+
+        case and section names provide a good overivew

@@ -38,6 +38,8 @@ class Fraction
 		int  _den; 
 
 		void setState(int num, int den);
+		int  findGCD(int n1, int n2);
+		void reduce();
 }; 
 
 #endif 

@@ -9,8 +9,7 @@ using namespace std;
 
 Fraction::Fraction()
 {
-	// fake values for M1 milestone
-	setState(9999,9999);
+	setState(1,1);
 }
 
 Fraction::Fraction(int num, int den)
@@ -28,10 +27,18 @@ istream& operator>> (istream& is, Fraction& f)
 {
 	// updated for M6
 	string pattern = 
-		R"((\D*\d+\D*))"	// numerator	[capture:1]
-		R"(/)"				// literal
-		R"((\D*\d+))"		// denominator	[capture:2]
-		R"(\D)";			// terminator
+        R"(\s*)"    		// optional white space
+        R"((-)?)"   		// optional negation for numerator      [capture: 1]
+        R"(\s*)"    		// optional white space        
+        R"((\d+))"  		// numerator digits                     [capture: 2]      
+        R"(\s*)"    		// optional white space         
+        R"(/)"      		// division symbol
+        R"(\s*)"   			// optional white space  
+        R"((-)?)"   		// optional negation for denominator    [capture: 3] 
+        R"(\s*)"    		// optional white space          
+        R"((\d+))"			// denominator digits                   [capture: 4] 
+		R"(\D)"				// terminator
+		;
     regex regex(pattern);   // initialize regex with pattern
     smatch matches;         // hold evaluation results
     string input;           // built up from input stream, one char at a time
@@ -47,7 +54,10 @@ istream& operator>> (istream& is, Fraction& f)
 	is.putback(c); // return last read character to stream
 
 	// set state values (num, den)
-	f.setState(stoi(matches[1].str()),stoi(matches[2].str())); 
+	f.setState(
+			stoi(matches[1].str() + matches[2].str())
+		,	stoi(matches[3].str() + matches[4].str())
+		); 
 	
 	return is;
 }
@@ -134,15 +144,15 @@ int Fraction::getDen() const
 }
 
 // central setting for state (numerator and denominator)
-//     - detect invalid denominator (zero)
-//     - ensure that denominator is unsigned
-//     - reduce to simplest form
 void Fraction::setState(int num, int den)
 {
+	// detect invalid denominator (zero)
 	if (den == 0)
 	{
 		throw invalid_argument("division by zero");
 	}
+
+	// ensure that denominator is unsigned
 	if (den < 0)
 	{
 		_num = num * -1;
@@ -153,6 +163,9 @@ void Fraction::setState(int num, int den)
 		_num = num;
 		_den = den;
 	}
+	
+	// reduce to simplest form
+	reduce();
 }
 
 int Fraction::getQuotient() const
@@ -168,4 +181,31 @@ int Fraction::getRemainder() const
 bool Fraction::isWholeNumber() const
 {
 	return ( getRemainder() == 0 );
+}
+
+// find gcd of two numbers
+int Fraction::findGCD (int n1, int n2) 
+{
+  int gcd, remainder;
+
+  /* Euclid's algorithm */
+  remainder = n1 % n2; 
+  while ( remainder != 0 )
+  {
+    n1 = n2;
+    n2 = remainder; 
+    remainder = n1 % n2; 
+  } 
+  gcd = n2; 
+
+  return abs(gcd); // ignore sign
+}
+
+// reduce to simplest form
+void Fraction::reduce() 
+{
+  int gcd;   
+  gcd = findGCD(_num, _den);
+  _num = _num / gcd;
+  _den = _den / gcd;
 }

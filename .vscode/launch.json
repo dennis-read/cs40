@@ -47,7 +47,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/FractionTests",
-            "args": [],
+            "args": ["Parameterized constructor"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

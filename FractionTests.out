@@ -1,0 +1,748 @@
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+FractionTests is a Catch v2.2.2 host application.
+Run with -? for options
+
+-------------------------------------------------------------------------------
+Default constructor
+  returns hard coded values
+-------------------------------------------------------------------------------
+FractionTests.cpp:9
+...............................................................................
+
+FractionTests.cpp:11: 
+PASSED:
+  CHECK( f.getNum() == 1 )
+with expansion:
+  1 == 1
+
+FractionTests.cpp:12: 
+PASSED:
+  CHECK( f.getDen() == 1 )
+with expansion:
+  1 == 1
+
+-------------------------------------------------------------------------------
+Parameterized constructor
+  throws exception on zero denominator
+-------------------------------------------------------------------------------
+FractionTests.cpp:18
+...............................................................................
+
+FractionTests.cpp:19: 
+PASSED:
+  CHECK_THROWS_AS( Fraction(1111,0), invalid_argument )
+
+FractionTests.cpp:20: 
+PASSED:
+  CHECK_THROWS_WITH( Fraction(1111,0), "division by zero" )
+with expansion:
+  "division by zero" equals: "division by zero"
+
+-------------------------------------------------------------------------------
+Parameterized constructor
+  simplifies when common factors exists
+-------------------------------------------------------------------------------
+FractionTests.cpp:23
+...............................................................................
+
+FractionTests.cpp:25: 
+PASSED:
+  CHECK( f.getNum() == 1 )
+with expansion:
+  1 == 1
+
+FractionTests.cpp:26: 
+PASSED:
+  CHECK( f.getDen() == 2 )
+with expansion:
+  2 == 2
+
+-------------------------------------------------------------------------------
+Parameterized constructor
+  flips numerator sign when denominator is negative
+-------------------------------------------------------------------------------
+FractionTests.cpp:29
+...............................................................................
+
+FractionTests.cpp:31: 
+PASSED:
+  CHECK( f.getNum() == -1 )
+with expansion:
+  -1 == -1
+
+FractionTests.cpp:32: 
+PASSED:
+  CHECK( f.getDen() == 2 )
+with expansion:
+  2 == 2
+
+-------------------------------------------------------------------------------
+Parameterized constructor
+  returns arguments unchanged if already simplified with no denominator sign
+-------------------------------------------------------------------------------
+FractionTests.cpp:35
+...............................................................................
+
+FractionTests.cpp:37: 
+PASSED:
+  CHECK( f.getNum() == 1 )
+with expansion:
+  1 == 1
+
+FractionTests.cpp:38: 
+PASSED:
+  CHECK( f.getDen() == 1 )
+with expansion:
+  1 == 1
+
+-------------------------------------------------------------------------------
+Copy constructor
+  produces exact copy of source
+-------------------------------------------------------------------------------
+FractionTests.cpp:44
+...............................................................................
+
+FractionTests.cpp:47: 
+PASSED:
+  CHECK( cpy.getNum() == src.getNum() )
+with expansion:
+  1 == 1
+
+FractionTests.cpp:48: 
+PASSED:
+  CHECK( cpy.getDen() == src.getDen() )
+with expansion:
+  2 == 2
+
+-------------------------------------------------------------------------------
+Operator =
+  produces exact copy of source
+-------------------------------------------------------------------------------
+FractionTests.cpp:54
+...............................................................................
+
+FractionTests.cpp:58: 
+PASSED:
+  CHECK( cpy.getNum() == src.getNum() )
+with expansion:
+  1 == 1
+
+FractionTests.cpp:59: 
+PASSED:
+  CHECK( cpy.getDen() == src.getDen() )
+with expansion:
+  2 == 2
+
+-------------------------------------------------------------------------------
+Operator +
+  adds numerators for like fraction
+-------------------------------------------------------------------------------
+FractionTests.cpp:65
+...............................................................................
+
+FractionTests.cpp:67: 
+PASSED:
+  CHECK( sum.getNum() == 2 )
+with expansion:
+  2 == 2
+
+FractionTests.cpp:68: 
+PASSED:
+  CHECK( sum.getDen() == 3 )
+with expansion:
+  3 == 3
+
+-------------------------------------------------------------------------------
+Operator +
+  respects addition of negative values
+-------------------------------------------------------------------------------
+FractionTests.cpp:71
+...............................................................................
+
+FractionTests.cpp:73: 
+PASSED:
+  CHECK( sum.getNum() == -1 )
+with expansion:
+  -1 == -1
+
+FractionTests.cpp:74: 
+PASSED:
+  CHECK( sum.getDen() == 3 )
+with expansion:
+  3 == 3
+
+-------------------------------------------------------------------------------
+Operator +
+  converts to simplest common denominator for unlike fraction
+-------------------------------------------------------------------------------
+FractionTests.cpp:77
+...............................................................................
+
+FractionTests.cpp:79: 
+PASSED:
+  CHECK( sum.getNum() == 7 )
+with expansion:
+  7 == 7
+
+FractionTests.cpp:80: 
+PASSED:
+  CHECK( sum.getDen() == 6 )
+with expansion:
+  6 == 6
+
+-------------------------------------------------------------------------------
+Operator +
+  leaves addends unchanged
+-------------------------------------------------------------------------------
+FractionTests.cpp:83
+...............................................................................
+
+FractionTests.cpp:87: 
+PASSED:
+  CHECK( x.getNum() == 2 )
+with expansion:
+  2 == 2
+
+FractionTests.cpp:88: 
+PASSED:
+  CHECK( x.getDen() == 3 )
+with expansion:
+  3 == 3
+
+FractionTests.cpp:89: 
+PASSED:
+  CHECK( y.getNum() == 1 )
+with expansion:
+  1 == 1
+
+FractionTests.cpp:90: 
+PASSED:
+  CHECK( y.getDen() == 3 )
+with expansion:
+  3 == 3
+
+-------------------------------------------------------------------------------
+Operator -
+  subtracts numerators for like fraction
+-------------------------------------------------------------------------------
+FractionTests.cpp:96
+...............................................................................
+
+FractionTests.cpp:98: 
+PASSED:
+  CHECK( diff.getNum() == 1 )
+with expansion:
+  1 == 1
+
+FractionTests.cpp:99: 
+PASSED:
+  CHECK( diff.getDen() == 3 )
+with expansion:
+  3 == 3
+
+-------------------------------------------------------------------------------
+Operator -
+  respects addition of negative values
+-------------------------------------------------------------------------------
+FractionTests.cpp:102
+...............................................................................
+
+FractionTests.cpp:104: 
+PASSED:
+  CHECK( diff.getNum() == 2 )
+with expansion:
+  2 == 2
+
+FractionTests.cpp:105: 
+PASSED:
+  CHECK( diff.getDen() == 3 )
+with expansion:
+  3 == 3
+
+-------------------------------------------------------------------------------
+Operator -
+  converts to simplest common denominator for unlike fraction
+-------------------------------------------------------------------------------
+FractionTests.cpp:108
+...............................................................................
+
+FractionTests.cpp:110: 
+PASSED:
+  CHECK( diff.getNum() == 1 )
+with expansion:
+  1 == 1
+
+FractionTests.cpp:111: 
+PASSED:
+  CHECK( diff.getDen() == 6 )
+with expansion:
+  6 == 6
+
+-------------------------------------------------------------------------------
+Operator -
+  leaves subtrahends unchanged
+-------------------------------------------------------------------------------
+FractionTests.cpp:114
+...............................................................................
+
+FractionTests.cpp:118: 
+PASSED:
+  CHECK( x.getNum() == 2 )
+with expansion:
+  2 == 2
+
+FractionTests.cpp:119: 
+PASSED:
+  CHECK( x.getDen() == 3 )
+with expansion:
+  3 == 3
+
+FractionTests.cpp:120: 
+PASSED:
+  CHECK( y.getNum() == 1 )
+with expansion:
+  1 == 1
+
+FractionTests.cpp:121: 
+PASSED:
+  CHECK( y.getDen() == 3 )
+with expansion:
+  3 == 3
+
+-------------------------------------------------------------------------------
+getQuotient()
+  returns result of integer division
+-------------------------------------------------------------------------------
+FractionTests.cpp:127
+...............................................................................
+
+FractionTests.cpp:128: 
+PASSED:
+  CHECK( Fraction(0,2).getQuotient() == 0 )
+with expansion:
+  0 == 0
+
+FractionTests.cpp:129: 
+PASSED:
+  CHECK( Fraction(1,2).getQuotient() == 0 )
+with expansion:
+  0 == 0
+
+FractionTests.cpp:130: 
+PASSED:
+  CHECK( Fraction(2,2).getQuotient() == 1 )
+with expansion:
+  1 == 1
+
+FractionTests.cpp:131: 
+PASSED:
+  CHECK( Fraction(3,2).getQuotient() == 1 )
+with expansion:
+  1 == 1
+
+FractionTests.cpp:132: 
+PASSED:
+  CHECK( Fraction(4,2).getQuotient() == 2 )
+with expansion:
+  2 == 2
+
+-------------------------------------------------------------------------------
+getRemainder()
+  returns remainder of integer division
+-------------------------------------------------------------------------------
+FractionTests.cpp:138
+...............................................................................
+
+FractionTests.cpp:139: 
+PASSED:
+  CHECK( Fraction(0,2).getRemainder() == 0 )
+with expansion:
+  0 == 0
+
+FractionTests.cpp:140: 
+PASSED:
+  CHECK( Fraction(1,2).getRemainder() == 1 )
+with expansion:
+  1 == 1
+
+FractionTests.cpp:141: 
+PASSED:
+  CHECK( Fraction(2,2).getRemainder() == 0 )
+with expansion:
+  0 == 0
+
+FractionTests.cpp:142: 
+PASSED:
+  CHECK( Fraction(3,2).getRemainder() == 1 )
+with expansion:
+  1 == 1
+
+FractionTests.cpp:143: 
+PASSED:
+  CHECK( Fraction(4,2).getRemainder() == 0 )
+with expansion:
+  0 == 0
+
+-------------------------------------------------------------------------------
+isWholeNumber()
+  is true for zero numerator
+-------------------------------------------------------------------------------
+FractionTests.cpp:149
+...............................................................................
+
+FractionTests.cpp:150: 
+PASSED:
+  CHECK( Fraction( 0,1).isWholeNumber() == true )
+with expansion:
+  true == true
+
+-------------------------------------------------------------------------------
+isWholeNumber()
+  is true for fractions that divide evenly
+-------------------------------------------------------------------------------
+FractionTests.cpp:153
+...............................................................................
+
+FractionTests.cpp:154: 
+PASSED:
+  CHECK( Fraction( 1,1).isWholeNumber() == true )
+with expansion:
+  true == true
+
+FractionTests.cpp:155: 
+PASSED:
+  CHECK( Fraction( 2,1).isWholeNumber() == true )
+with expansion:
+  true == true
+
+-------------------------------------------------------------------------------
+isWholeNumber()
+  is false for fractions that don't divide evenly
+-------------------------------------------------------------------------------
+FractionTests.cpp:159
+...............................................................................
+
+FractionTests.cpp:160: 
+PASSED:
+  CHECK( Fraction( 1,2).isWholeNumber() == false )
+with expansion:
+  false == false
+
+FractionTests.cpp:161: 
+PASSED:
+  CHECK( Fraction( 3,2).isWholeNumber() == false )
+with expansion:
+  false == false
+
+-------------------------------------------------------------------------------
+isWholeNumber()
+  is indifferent to numerator sign
+-------------------------------------------------------------------------------
+FractionTests.cpp:164
+...............................................................................
+
+FractionTests.cpp:165: 
+PASSED:
+  CHECK( Fraction( 1,1).isWholeNumber() == true )
+with expansion:
+  true == true
+
+FractionTests.cpp:166: 
+PASSED:
+  CHECK( Fraction(-1,1).isWholeNumber() == true )
+with expansion:
+  true == true
+
+FractionTests.cpp:167: 
+PASSED:
+  CHECK( Fraction( 1,2).isWholeNumber() == false )
+with expansion:
+  false == false
+
+FractionTests.cpp:168: 
+PASSED:
+  CHECK( Fraction(-1,2).isWholeNumber() == false )
+with expansion:
+  false == false
+
+-------------------------------------------------------------------------------
+operator <<
+  zero renders as zero
+-------------------------------------------------------------------------------
+FractionTests.cpp:175
+...............................................................................
+
+FractionTests.cpp:176: 
+PASSED:
+  CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction( 0, 1))).str() == "0" )
+with expansion:
+  "0" == "0"
+
+FractionTests.cpp:177: 
+PASSED:
+  CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction(-0, 1))).str() == "0" )
+with expansion:
+  "0" == "0"
+
+-------------------------------------------------------------------------------
+operator <<
+  whole number renders just the quotient
+-------------------------------------------------------------------------------
+FractionTests.cpp:180
+...............................................................................
+
+FractionTests.cpp:181: 
+PASSED:
+  CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction( 1, 1))).str() == "1" )
+with expansion:
+  "1" == "1"
+
+FractionTests.cpp:182: 
+PASSED:
+  CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction(-1, 1))).str() == "-1" )
+with expansion:
+  "-1" == "-1"
+
+FractionTests.cpp:183: 
+PASSED:
+  CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction( 2, 1))).str() == "2" )
+with expansion:
+  "2" == "2"
+
+FractionTests.cpp:184: 
+PASSED:
+  CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction(-2, 1))).str() == "-2" )
+with expansion:
+  "-2" == "-2"
+
+-------------------------------------------------------------------------------
+operator <<
+  non whole number reders as fraction
+-------------------------------------------------------------------------------
+FractionTests.cpp:187
+...............................................................................
+
+FractionTests.cpp:188: 
+PASSED:
+  CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction( 1, 2))).str() == "1/2" )
+with expansion:
+  "1/2" == "1/2"
+
+FractionTests.cpp:189: 
+PASSED:
+  CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction(-1, 2))).str() == "-1/2" )
+with expansion:
+  "-1/2" == "-1/2"
+
+FractionTests.cpp:190: 
+PASSED:
+  CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction( 5, 6))).str() == "5/6" )
+with expansion:
+  "5/6" == "5/6"
+
+FractionTests.cpp:191: 
+PASSED:
+  CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction(-5, 6))).str() == "-5/6" )
+with expansion:
+  "-5/6" == "-5/6"
+
+-------------------------------------------------------------------------------
+operator >>
+  input terminated by space, operator (+-), or newline
+-------------------------------------------------------------------------------
+FractionTests.cpp:199
+...............................................................................
+
+FractionTests.cpp:201: 
+PASSED:
+  CHECK( f.getNum() == 1 )
+with expansion:
+  1 == 1
+
+FractionTests.cpp:202: 
+PASSED:
+  CHECK( f.getDen() == 2 )
+with expansion:
+  2 == 2
+
+FractionTests.cpp:205: 
+PASSED:
+  CHECK( f.getNum() == 1 )
+with expansion:
+  1 == 1
+
+FractionTests.cpp:206: 
+PASSED:
+  CHECK( f.getDen() == 2 )
+with expansion:
+  2 == 2
+
+FractionTests.cpp:209: 
+PASSED:
+  CHECK( f.getNum() == 1 )
+with expansion:
+  1 == 1
+
+FractionTests.cpp:210: 
+PASSED:
+  CHECK( f.getDen() == 2 )
+with expansion:
+  2 == 2
+
+FractionTests.cpp:213: 
+PASSED:
+  CHECK( f.getNum() == 1 )
+with expansion:
+  1 == 1
+
+FractionTests.cpp:214: 
+PASSED:
+  CHECK( f.getDen() == 2 )
+with expansion:
+  2 == 2
+
+-------------------------------------------------------------------------------
+operator >>
+  numerator sign is optional
+-------------------------------------------------------------------------------
+FractionTests.cpp:217
+...............................................................................
+
+FractionTests.cpp:219: 
+PASSED:
+  CHECK( f.getNum() == 1 )
+with expansion:
+  1 == 1
+
+FractionTests.cpp:220: 
+PASSED:
+  CHECK( f.getDen() == 2 )
+with expansion:
+  2 == 2
+
+FractionTests.cpp:223: 
+PASSED:
+  CHECK( f.getNum() == -1 )
+with expansion:
+  -1 == -1
+
+FractionTests.cpp:224: 
+PASSED:
+  CHECK( f.getDen() == 2 )
+with expansion:
+  2 == 2
+
+-------------------------------------------------------------------------------
+operator >>
+  denominator sign is optional
+-------------------------------------------------------------------------------
+FractionTests.cpp:227
+...............................................................................
+
+FractionTests.cpp:229: 
+PASSED:
+  CHECK( f.getNum() == 1 )
+with expansion:
+  1 == 1
+
+FractionTests.cpp:230: 
+PASSED:
+  CHECK( f.getDen() == 2 )
+with expansion:
+  2 == 2
+
+FractionTests.cpp:233: 
+PASSED:
+  CHECK( f.getNum() == -1 )
+with expansion:
+  -1 == -1
+
+FractionTests.cpp:234: 
+PASSED:
+  CHECK( f.getDen() == 2 )
+with expansion:
+  2 == 2
+
+-------------------------------------------------------------------------------
+operator >>
+  whitespace is ignored
+-------------------------------------------------------------------------------
+FractionTests.cpp:237
+...............................................................................
+
+FractionTests.cpp:239: 
+PASSED:
+  CHECK( f.getNum() == 1 )
+with expansion:
+  1 == 1
+
+FractionTests.cpp:240: 
+PASSED:
+  CHECK( f.getDen() == 2 )
+with expansion:
+  2 == 2
+
+FractionTests.cpp:243: 
+PASSED:
+  CHECK( f.getNum() == 1 )
+with expansion:
+  1 == 1
+
+FractionTests.cpp:244: 
+PASSED:
+  CHECK( f.getDen() == 2 )
+with expansion:
+  2 == 2
+
+FractionTests.cpp:247: 
+PASSED:
+  CHECK( f.getNum() == 1 )
+with expansion:
+  1 == 1
+
+FractionTests.cpp:248: 
+PASSED:
+  CHECK( f.getDen() == 2 )
+with expansion:
+  2 == 2
+
+FractionTests.cpp:251: 
+PASSED:
+  CHECK( f.getNum() == 1 )
+with expansion:
+  1 == 1
+
+FractionTests.cpp:252: 
+PASSED:
+  CHECK( f.getDen() == 2 )
+with expansion:
+  2 == 2
+
+FractionTests.cpp:255: 
+PASSED:
+  CHECK( f.getNum() == 1 )
+with expansion:
+  1 == 1
+
+FractionTests.cpp:256: 
+PASSED:
+  CHECK( f.getDen() == 2 )
+with expansion:
+  2 == 2
+
+FractionTests.cpp:259: 
+PASSED:
+  CHECK( f.getNum() == 1 )
+with expansion:
+  1 == 1
+
+FractionTests.cpp:260: 
+PASSED:
+  CHECK( f.getDen() == 2 )
+with expansion:
+  2 == 2
+
+===============================================================================
+All tests passed (91 assertions in 11 test cases)
+
