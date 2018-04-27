@@ -373,6 +373,15 @@ At completion of each milestone
                 instead of return new object
         corrected error and specified both operators as const
                 this would have detected this issue 
+        added test cases to validate no change to operands
+
+* noticed discrepancy between sample file and assignment
+
+        exception text on zero denominator case differs
+                assignment  : [zero denominator]
+                sample file : [division by zero]
+
+        updated code and unit test to match sample file content
 
 * Test results
 

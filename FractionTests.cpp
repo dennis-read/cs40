@@ -29,7 +29,7 @@ TEST_CASE( "Fraction", "[]" ) {
 
     SECTION( "constructor, zero denominator" ) {
         CHECK_THROWS_AS( Fraction(1111,0), invalid_argument);
-        CHECK_THROWS_WITH( Fraction(1111,0), "zero denominator");
+        CHECK_THROWS_WITH( Fraction(1111,0), "division by zero");
     }
 
     SECTION( "operator >>" ) {
@@ -112,7 +112,17 @@ TEST_CASE( "Fraction", "[]" ) {
 
             Fraction f4 = Fraction(1,3) + Fraction(1,-3);
             CHECK( f4.getNum() ==  0 );
-            CHECK( f4.getDen() ==  3 );            
+            CHECK( f4.getDen() ==  3 );   
+
+            // addition leaves addends unchanged
+            Fraction f5x = Fraction(2,3);
+            Fraction f5y = Fraction(1,3);
+            f5x + f5y;
+            CHECK( f5x.getNum() ==  2 );
+            CHECK( f5x.getDen() ==  3 ); 
+            CHECK( f5y.getNum() ==  1 );
+            CHECK( f5y.getDen() ==  3 ); 
+
     }  
 
     SECTION( "operator -" ) {
@@ -130,6 +140,16 @@ TEST_CASE( "Fraction", "[]" ) {
 
             Fraction f4 = Fraction(1,3) - Fraction(2,4);
             CHECK( f4.getNum() ==  -2 );
-            CHECK( f4.getDen() ==  12 );            
+            CHECK( f4.getDen() ==  12 );     
+
+            // subtraction leaves addends unchanged
+            Fraction f5x = Fraction(2,3);
+            Fraction f5y = Fraction(1,3);
+            f5x - f5y;
+            CHECK( f5x.getNum() ==  2 );
+            CHECK( f5x.getDen() ==  3 ); 
+            CHECK( f5y.getNum() ==  1 );
+            CHECK( f5y.getDen() ==  3 ); 
+                   
     }              
 }
