@@ -171,29 +171,45 @@ TEST_CASE( "isWholeNumber()", "[]" ) {
 
 TEST_CASE( "operator <<", "[]" ) {
     stringstream output;
-    
+
     SECTION( "zero renders as zero" ) {
-        CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction( 0, 1))).str() == "0" );
-        CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction(-0, 1))).str() == "0" );         
+        output = stringstream();
+        output << Fraction( 0,1) ; CHECK ( output.str() == "0");
+        
+        output = stringstream();        
+        output << Fraction(-0,1) ; CHECK ( output.str() == "0");              
     }
 
     SECTION( "whole number renders just the quotient" ) {
-        CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction( 1, 1))).str() ==  "1" );
-        CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction(-1, 1))).str() == "-1" );
-        CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction( 2, 1))).str() ==  "2" );
-        CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction(-2, 1))).str() == "-2" );
+        output = stringstream();     
+        output << Fraction(  1,1) ; CHECK ( output.str() ==  "1");
+
+        output = stringstream();
+        output << Fraction( -1,1) ; CHECK ( output.str() == "-1");
+
+        output = stringstream();
+        output << Fraction(  2,1) ; CHECK ( output.str() ==  "2");
+
+        output = stringstream();
+        output << Fraction( -2,1) ; CHECK ( output.str() == "-2");
     }
 
     SECTION( "non whole number reders as fraction" ) {
-        CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction( 1, 2))).str() ==  "1/2" );
-        CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction(-1, 2))).str() == "-1/2" );
-        CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction( 5, 6))).str() ==  "5/6" );
-        CHECK( static_cast<std::ostringstream&>(operator<<(stringstream(), Fraction(-5, 6))).str() == "-5/6" );        
+        output = stringstream();
+        output << Fraction(  1,2) ; CHECK ( output.str() ==  "1/2");
+
+        output = stringstream();
+        output << Fraction( -1,2) ; CHECK ( output.str() == "-1/2");
+
+        output = stringstream();
+        output << Fraction(  5,6) ; CHECK ( output.str() ==  "5/6");
+
+        output = stringstream();  
+        output << Fraction( -5,6) ; CHECK ( output.str() == "-5/6");        
     }                             
 }
 
 TEST_CASE( "operator >>", "[]" ) {
-    
     Fraction f;
  
     SECTION( "input terminated by space, operator (+-), or newline" ) {
