@@ -173,39 +173,22 @@ TEST_CASE( "operator <<", "[]" ) {
     stringstream output;
 
     SECTION( "zero renders as zero" ) {
-        output = stringstream();
-        output << Fraction( 0,1) ; CHECK ( output.str() == "0");
-        
-        output = stringstream();        
-        output << Fraction(-0,1) ; CHECK ( output.str() == "0");              
+        output.str("") ; output << Fraction( 0,1) ; CHECK ( output.str() == "0");
+        output.str("") ; output << Fraction(-0,1) ; CHECK ( output.str() == "0");              
     }
 
     SECTION( "whole number renders just the quotient" ) {
-        output = stringstream();     
-        output << Fraction(  1,1) ; CHECK ( output.str() ==  "1");
-
-        output = stringstream();
-        output << Fraction( -1,1) ; CHECK ( output.str() == "-1");
-
-        output = stringstream();
-        output << Fraction(  2,1) ; CHECK ( output.str() ==  "2");
-
-        output = stringstream();
-        output << Fraction( -2,1) ; CHECK ( output.str() == "-2");
+        output.str("") ; output << Fraction(  1,1) ; CHECK ( output.str() ==  "1");
+        output.str("") ; output << Fraction( -1,1) ; CHECK ( output.str() == "-1");
+        output.str("") ; output << Fraction(  2,1) ; CHECK ( output.str() ==  "2");
+        output.str("") ; output << Fraction( -2,1) ; CHECK ( output.str() == "-2");
     }
 
     SECTION( "non whole number reders as fraction" ) {
-        output = stringstream();
-        output << Fraction(  1,2) ; CHECK ( output.str() ==  "1/2");
-
-        output = stringstream();
-        output << Fraction( -1,2) ; CHECK ( output.str() == "-1/2");
-
-        output = stringstream();
-        output << Fraction(  5,6) ; CHECK ( output.str() ==  "5/6");
-
-        output = stringstream();  
-        output << Fraction( -5,6) ; CHECK ( output.str() == "-5/6");        
+        output.str("") ; output << Fraction(  1,2) ; CHECK ( output.str() ==  "1/2");
+        output.str("") ; output << Fraction( -1,2) ; CHECK ( output.str() == "-1/2");
+        output.str("") ; output << Fraction(  5,6) ; CHECK ( output.str() ==  "5/6");
+        output.str("") ; output << Fraction( -5,6) ; CHECK ( output.str() == "-5/6");        
     }                             
 }
 
